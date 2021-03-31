@@ -24,7 +24,7 @@ int main(){
     std::string person;
 
     while(1){
-        system("cat *");
+        system("cat tests/*");
         choice = menu();
         if(choice == 4){
             // exit
