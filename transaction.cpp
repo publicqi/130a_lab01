@@ -56,23 +56,12 @@ int Transaction::getBalanceHelper(string person, int* balance){
 }
 
 void Transaction::genNonce(){
-    char nonce = 'a';
+    int nonce = 0;
     string hash;
 
-    for(int i = 0; i < 26; i++){
-        hash = sha256(to_string(amount) + sender + receiver + this->hash + nonce);
-        if(hash.back() == '0'){
-            this->nonce = nonce;
-            return;
-        }
-        nonce ++;
-    }
-
-    nonce = 'A';
-    for(int i = 0; i < 26; i++){
-        hash = sha256(to_string(amount) + sender + receiver + this->hash + nonce);
-        if(hash.back() == '0'){
-            this->nonce = nonce;
+    while(1){
+        if(sha256(to_string(amount) + sender + receiver + this->hash + to_string(nonce)).back() == '0'){
+            this->nonce = to_string(nonce);
             return;
         }
         nonce ++;
