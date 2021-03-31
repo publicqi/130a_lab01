@@ -59,7 +59,7 @@ void Transaction::genNonce(){
     int nonce = 0;
 
     while(1){
-        if(sha256(to_string(amount) + sender + receiver + this->hash + to_string(nonce)).back() == '0'){
+        if(sha256(to_string(amount) + sender + receiver + to_string(nonce)).back() == '0'){
             this->nonce = to_string(nonce);
             return;
         }
