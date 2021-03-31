@@ -57,7 +57,6 @@ int Transaction::getBalanceHelper(string person, int* balance){
 
 void Transaction::genNonce(){
     int nonce = 0;
-    string hash;
 
     while(1){
         if(sha256(to_string(amount) + sender + receiver + this->hash + to_string(nonce)).back() == '0'){
